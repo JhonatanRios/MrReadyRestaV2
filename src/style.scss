@@ -1,0 +1,231 @@
+$primary: #B1122A;
+$darkPrimary: #7E0D1E;
+$secundary: #F5F4D8;
+$tertiary: #fff;
+$gray: #d9d9d9;
+$darkGray: #8A8A8A;
+$lightGray: #ECECEC;
+$black: #151414;
+$white: #fff;
+$transparente: rgba(255, 255, 255, 0);
+
+body {
+
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background: #151414;
+
+    .menu {
+        width: 250px;
+        height: 100%;
+        background-color: $primary;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        align-items: center;
+        user-select: none;
+        .contLogoReady {
+            width: 100%;
+            height: 15%;
+            padding: 5%;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            .imgLogoReady {
+                width: 200px;
+                height: 200px;
+                background: url('/src/assets/logoReady.png') no-repeat center / contain;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+            }
+        }
+        .contInfoRest {
+            width: 100%;
+            height: 15%;      
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            //margin-top: 2em;
+            img {
+                
+            }
+            .contNameRest {
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                padding-left: 0.4em;
+                .nameRest{
+                    font-size: 0.9em;
+                    color: $white;
+                    
+                }
+            }
+            
+        }
+
+        .contBotones {
+            width: 100%;
+            height: 45%;
+            display: flex;
+            align-content: center;
+            align-items: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+            margin-top: 2em;
+            background: #8A8A8A;
+            .contBotSel {
+                width: 100%;
+                height: 50px;
+                padding-left: 3em;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-content: center;
+                align-items: center;
+                background-color: $darkPrimary;
+                img {
+                   // width: 4vh; 
+                }
+                h2 {
+                    padding-left: 0.6em;
+                    color: $white;
+                }
+            }
+            .contBotDesSel {
+                width: 100%;
+                height: 50px;
+                padding-left: 3em;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-content: center;
+                align-items: center;
+                
+                img {
+                    //width: 4vh; 
+                }
+                h2 {
+                    padding-left: 0.6em;
+                    color: $white;
+                }
+            }
+            .contBotDesSel:hover {
+                background-color: $darkPrimary;
+            }
+            
+        }
+        .contBotCerrar {
+            width: 100%;
+            height: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+            background-color: #151414;
+            .cerrarRestauranteBot {
+                width: 180px;
+                height: 35px;
+                //background-color: $darkPrimary;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                border-radius: 4em;
+                border-style: solid;
+                border-width: 2px;
+                border-color: $white;
+                h3 {
+                    font-size: 0.8em;
+                    color: $white;
+                }
+            }
+            .cerrarRestauranteBot:hover {
+                background-color: $primary;
+                box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75)
+            }
+        }
+        
+    }
+    .contenido {
+        width: 100%;
+        height: 100%;
+        background-color: $lightGray;
+        flex-direction: column;
+        flex-wrap: wrap;
+        .header {
+            user-select: none;
+            width: 100%;
+            height: 60px;
+            background-color: $secundary;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            .contBuscador {
+                width: 40%;
+                height: 60%;
+                border-radius: 50px;
+                margin-left: 1em;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-content: flex-start;
+                align-items: center;
+                justify-content: center;
+                background: $lightGray;
+                img {
+
+                }
+                h2 {
+                    padding-left: 1em;
+                    color: $darkGray;
+                }
+            }
+            .contPerfil {
+                padding-right: 1em;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-content: center;
+                align-items: center;
+                justify-content: center;
+                h2 {
+                    color: $primary;
+                    padding-right: 1em;
+
+                }
+                img {
+
+                }
+            }
+        }
+        .listaPedidos {
+            width: 100%;
+            height: 86%;
+            background-color: $white;
+            margin: 1%;
+
+            h1 {
+            
+            }
+        }
+    }
+
+}
