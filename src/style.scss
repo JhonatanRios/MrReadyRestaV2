@@ -22,7 +22,6 @@ body {
     justify-content: center;
     align-content: center;
     align-items: center;
-    background: #151414;
 
     .menu {
         width: 250px;
@@ -43,9 +42,8 @@ body {
             align-content: center;
             align-items: center;
             .imgLogoReady {
-                width: 200px;
-                height: 200px;
-                background: url('/src/assets/logoReady.png') no-repeat center / contain;
+                width: 100px;
+                height: 100px;
                 justify-content: center;
                 align-content: center;
                 align-items: center;
@@ -60,7 +58,6 @@ body {
             justify-content: center;
             align-content: center;
             align-items: center;
-            //margin-top: 2em;
             img {
                 
             }
@@ -88,7 +85,6 @@ body {
             flex-direction: column;
             flex-wrap: wrap;
             margin-top: 2em;
-            background: #8A8A8A;
             .contBotSel {
                 width: 100%;
                 height: 50px;
@@ -137,7 +133,6 @@ body {
             align-items: center;
             justify-content: center;
             align-content: center;
-            background-color: #151414;
             .cerrarRestauranteBot {
                 width: 180px;
                 height: 35px;

@@ -1,42 +1,57 @@
 import React from 'react';
+import firebase from './Firestore';
 import './reset.css';
 import './style.css';
 
-const logo = '../public/assets/logoReady.png';
+const logo = '/assets/logoReady.png';
+const imaResta = '/assets/imgRest.png';
+const user = '/assets/imgAngelina.png';
+const lupa = '/assets/Loupe.png';
+const uno = '/assets/botoncitos/1.png';
+const dos = '/assets/botoncitos/2.png';
+const tres = '/assets/botoncitos/3.png';
+const cuatro = '/assets/botoncitos/4.png';
+const cinco = '/assets/botoncitos/5.png';
 
 export class App extends React.Component {
+ 
+  componentDidMount () {
+    const db = firebase.firestore().collection('restaurantes');
+    console.log(db)
+  }
+
   render() {
     return (
-      <div className="container">
+      <div className="container" >
         <div className="menu">
         <div className="contLogoReady">
-            <img className="imgLogoReady"/>
+            <img className="imgLogoReady" src={logo}/>
           </div>
           <div className="contInfoRest">  
-            <img src={'/public/assets/imaRest.png'} alt=""/>
+            <img src={imaResta} alt=""/>
             <div className="contNameRest">
               <h1 className="nameRest">Nombre Restaurante</h1>
             </div>
           </div>
           <div className="contBotones">
             <div className="contBotSel">
-                <img src="src/botoncitos/1.png" alt=""/>
+                <img src={uno} alt=""/>
                 <h2>Ordenes</h2>
             </div>
             <div className="contBotDesSel">
-                <img src="src/botoncitos/2.png" alt=""/>
+                <img src={dos} alt=""/>
                 <h2>Historial</h2>
             </div>
             <div className="contBotDesSel">
-                <img src="src/botoncitos/3.png" alt=""/>
+                <img src={tres} alt=""/>
                 <h2>Restaurante</h2>
             </div>
             <div className="contBotDesSel">
-                <img src="src/botoncitos/4.png" alt=""/>
+                <img src={cuatro} alt=""/>
                 <h2>Comentarios</h2>
             </div>
             <div className="contBotDesSel">
-              <img src="src/botoncitos/5.png" alt=""/>
+              <img src={cinco} alt=""/>
               <h2>Configuración</h2>
             </div>
           </div>
@@ -49,12 +64,12 @@ export class App extends React.Component {
         <div className="contenido">
             <div className="header">
                 <div className="contBuscador">
-                  <img src="src/Loupe.png" alt=""/>
+                  <img src={lupa} alt=""/>
                   <h2>Buscar número de orden</h2>
                 </div>
                 <div className="contPerfil">
                   <h2>Angelina Doe</h2>
-                  <img src="src/imgAngelina.png" alt=""/>
+                  <img src={user} alt=""/>
                 </div>
             </div>
             <div className="listaPedidos">
