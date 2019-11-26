@@ -1,8 +1,10 @@
 import React from 'react';
 import firebase from './Firestore';
 import axios from 'axios';
+import { Line, Circle } from 'rc-progress';
 import './reset.css';
 import './style.css';
+
 
 const logo = '/assets/logoReady.png';
 const imaResta = '/assets/imgRest.png';
@@ -118,12 +120,21 @@ export class App extends React.Component {
                     </div>
                     <div className="boxDos">
                       <p className="nameCliente">Cliente:  <b>{restaurant.userInfo.nameUser}</b></p>
-                      <p className="numOrden">Número de Orden: <b>12341241</b></p>
+                      <p className="numOrden">Número de Orden: <b>{Math.floor(Math.random()*1000)}</b></p>
                       <p className="pedido">Orden: <b>{restaurant.pedidoDetails}</b></p>
                     </div>
                     <div className="boxTres">
-                    <p>paso actual {restaurant.seguimiento.pasoActual}</p>
-                        <button className="botonSeguimiento" onClick={() => this.nextStep(restaurant.id)}>siguiente</button>
+                     <div>
+                        <Line className="progressBar" percent="50" strokeWidth="8" strokeColor="#B1122A"
+                        trailColor= "#d9d9d9"
+                        trailWidth="8" 
+                        strokeLinecap="round"
+                        />
+                      </div>
+                      <p>paso actual {restaurant.seguimiento.pasoActual}</p>
+                      <div className="contBotSegui">
+                        <div className="botSegui" onClick={() => this.nextStep(restaurant.id)}><h3>siguiente</h3></div>
+                      </div>
                     </div>
                       
                   </div>

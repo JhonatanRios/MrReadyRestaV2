@@ -231,7 +231,7 @@ body {
             }
         }
         .listaPedidos {
-            width: 98%;
+            width: 97%;
             height: 90%;
             background-color: $white;
             margin: 1%;
@@ -317,7 +317,7 @@ body {
                             font-family: 'Muli', serif;
                             font-weight: 700;
                             color: $black;
-                            font-size: 0.8em;
+                            font-size: 1em;
                         }
                     }
                     .botonSeguimiento{
@@ -325,12 +325,55 @@ body {
                     }
                 }
                 .boxTres{
+                
                     width: 20%;
-                    background-color: $primary;
+                    padding-left: 2em;
+
+                    .progressBar{
+                        padding-top: 15px;
+                    }
+                   
+                   .contBotSegui {
+                    width: 100%;
+                    padding: 15px 0;
+                    //height: 20%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    align-content: center;
+                    .botSegui {
+                        background-color: $secundary;
+                        width: 180px;
+                        height: 35px;
+                        //background-color: $darkPrimary;
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        align-items: center;
+                        border-radius: 4em;
+                        border-style: solid;
+                        border-width: 2px;
+                        border-color: $primary;
+                        h3 {
+                            font-size: 1em;
+                            color: $primary;
+                            font-family: 'Muli', sans-serif;
+                            font-weight: 500;
+                        }
+                    }
+                    .botSegui:hover {
+                        background-color: $secundary;
+                        box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+                        border-color: $darkPrimary;
+                        h3:hover {
+                            font-weight: 700;
+                        }
+                    }
                 }
                 
             }
         }
     }
 
+}
 }
