@@ -13,6 +13,7 @@ const dos = '/assets/botoncitos/2.png';
 const tres = '/assets/botoncitos/3.png';
 const cuatro = '/assets/botoncitos/4.png';
 const cinco = '/assets/botoncitos/5.png';
+const cliente = '/assets/user.png'
 
 export class App extends React.Component {
   constructor(props) {
@@ -62,7 +63,7 @@ export class App extends React.Component {
           <div className="contInfoRest">  
             <img src={imaResta} alt=""/>
             <div className="contNameRest">
-              <h1 className="nameRest">Nombre Restaurante</h1>
+              <h1 className="nameRest">El Retiro</h1>
             </div>
           </div>
           <div className="contBotones">
@@ -105,13 +106,26 @@ export class App extends React.Component {
             </div>
           </div>
           <div className="listaPedidos">
+            <div className="contTitListPedidos">
+              <h3>Lista de Pedidos</h3>
+            </div>
+            <div className="rayita"></div>
             {this.state.enPreparacionArrays.map((restaurant, index) => {
                 return (
-                  <div>
-                    <p>{restaurant.pedidoDetails}</p>
+                  <div className="contTarjePedido">
+                    <div className="boxUno">
+                      <img className="imgCliente" src={cliente} alt=""/>
+                    </div>
+                    <div className="boxDos">
+                      <p className="nameCliente">Cliente:  <b>{restaurant.userInfo.nameUser}</b></p>
+                      <p className="numOrden">Número de Orden: <b>12341241</b></p>
+                      <p className="pedido">Orden: <b>{restaurant.pedidoDetails}</b></p>
+                    </div>
+                    <div className="boxTres">
                     <p>paso actual {restaurant.seguimiento.pasoActual}</p>
-                    <p>usuario {restaurant.userInfo.nameUser}</p>
-                    <button onClick={() => this.nextStep(restaurant.id)}>siguiente</button>
+                        <button className="botonSeguimiento" onClick={() => this.nextStep(restaurant.id)}>siguiente</button>
+                    </div>
+                      
                   </div>
                 )
             })}
