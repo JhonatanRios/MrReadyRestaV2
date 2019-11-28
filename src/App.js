@@ -1,7 +1,7 @@
 import React from 'react';
 import firebase from './Firestore';
 import axios from 'axios';
-import { Line, Circle } from 'rc-progress';
+import { Line } from 'rc-progress';
 import './reset.css';
 import './style.css';
 
