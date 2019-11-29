@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i|Muli:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
 
-
 $primary: #B1122A;
 $darkPrimary: #7E0D1E;
 $secundary: #F5F4D8;
@@ -12,9 +11,10 @@ $black: #151414;
 $white: #fff;
 $transparente: rgba(255, 255, 255, 0);
 
-body {
-
-}
+ //Afluencia
+$afluVerde: #17DF00;
+$afluAmari: #FF8800;
+$afluRojo: #C90000;
 
 .container {
     width: 100vw;
@@ -25,21 +25,21 @@ body {
     justify-content: center;
     align-content: center;
     align-items: center;
-
+    background: #151414;
     .menu {
-        width: 250px;
+        width: 20%;
         height: 100%;
         background-color: $primary;
         display: flex;
         flex-direction: column;
-        flex-wrap: nowrap;
+        //flex-wrap: nowrap;
         align-content: center;
         align-items: center;
         user-select: none;
         .contLogoReady {
             width: 100%;
-            height: 15%;
-            padding: 5%;
+            height: 20%;
+            padding: 1em 0 1em 0;
             display: flex;
             justify-content: center;
             align-content: center;
@@ -53,17 +53,19 @@ body {
             }
         }
         .contInfoRest {
-            width: 90%;
-            height: 15%;
-            padding: 0 1em 0 1em;      
+            width: 100%;
+            height: 10%;
+            padding: 1em 0 1em 0;      
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            justify-content: flex-start;
+            justify-content: center;
             align-content: center;
             align-items: center;
             img {
-               height: 40%; 
+                width: 50px;
+                height: 50px;
+                border-radius: 50px;
             }
             .contNameRest {
                 display: flex;
@@ -81,24 +83,24 @@ body {
             }
             
         }
-
         .contBotones {
             width: 100%;
-            height: 45%;
+            height: 50%;
             display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
             align-content: center;
             align-items: center;
-            flex-direction: column;
-            flex-wrap: wrap;
-            margin-top: 2em;
             .contBotSel {
-                width: 100%;
-                height: 50px;
-                padding-left: 3em;
+                width: 80%;
+                height: 15%;
+                padding-left: 20%;
                 display: flex;
                 flex-direction: row;
-                flex-wrap: nowrap;
+                flex-wrap: wrap;
                 align-content: center;
+                justify-content: flex-start;
                 align-items: center;
                 background-color: $darkPrimary;
                 img {
@@ -112,15 +114,15 @@ body {
                 }
             }
             .contBotDesSel {
-                width: 100%;
-                height: 50px;
-                padding-left: 3em;
+                width: 80%;
+                height: 15%;
+                padding-left: 20%;
                 display: flex;
                 flex-direction: row;
-                flex-wrap: nowrap;
+                flex-wrap: wrap;
                 align-content: center;
-                align-items: center;
-                
+                justify-content: flex-start;
+                align-items: center;                
                 img {
                     //width: 4vh; 
                 }
@@ -136,13 +138,84 @@ body {
                 h2:hover {
                     font-weight: 700;
                 }
+            }   
+        }
+        .contAfluencia {
+            width: 100%;
+            height: 10%;
+            .Afluencia {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                h1 {
+                    width: 100%;
+                    height: 20%;
+                    font-size: 0.8em;
+                    color: $primary;
+                    font-family: 'Muli', serif;
+                    font-weight: 800;
+                    display: flex;
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                }
+                .tiposAfluencia {
+                    width: 100%;
+                    height: 80%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                    .tipo {
+                        width: 30%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                        align-content: center;
+                        align-items: center;
+                    }
+                    .tipo:hover {
+                        background: $lightGray;
+                    }
+                    .uno {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50px;
+                        background: $afluVerde;
+                    }
+                    .dos {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50px;
+                        background: $afluAmari;
+                    }
+                    .tres {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50px;
+                        background: $afluRojo;
+                    }
+                    h3 {
+                        font-size: 0.7em;
+                        color: $black;
+                        font-family: 'Muli', sans-serif;
+                        font-weight: 500;
+                        margin: 2%;
+                    }
+                }
             }
-            
         }
         .contBotCerrar {
             width: 100%;
-            height: 20%;
+            height: 10%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             align-content: center;
@@ -158,6 +231,7 @@ body {
                 border-style: solid;
                 border-width: 2px;
                 border-color: $white;
+                margin: 1%;
                 h3 {
                     font-size: 0.7em;
                     color: $white;
@@ -172,19 +246,22 @@ body {
                     font-weight: 700;
                 }
             }
-        }
-        
+        } 
     }
     .contenido {
-        width: 100%;
+        width: 80%;
         height: 100%;
         background-color: $lightGray;
+        display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center; 
+        align-items: center;
         .header {
             user-select: none;
             width: 100%;
-            height: 60px;
+            height: 6%;
             background-color: $secundary;
             display: flex;
             flex-direction: row;
@@ -203,7 +280,6 @@ body {
                 align-content: flex-start;
                 align-items: center;
                 justify-content: flex-start;
-               // background: $lightGray;
                 img {
                     height: 50%;
                 }
@@ -213,167 +289,201 @@ body {
                 }
             }
             .contPerfil {
-                padding-right: 1em;
                 display: flex;
                 flex-direction: row;
                 flex-wrap: nowrap;
                 align-content: center;
                 align-items: center;
                 justify-content: center;
+                padding-right: 1em;
                 h2 {
                     color: $primary;
                     padding-right: 1em;
-
-                }
-                img {
-
                 }
             }
         }
-        .listaPedidos {
-            width: 97%;
-            height: 90%;
-            background-color: $white;
-            margin: 1%;
-            box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.50);
-
-            .contTitListPedidos {
+        .contList {
+            width: 96%;
+            height: 94%;
+            padding: 2%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center; 
+            .listaPedidos {
                 width: 100%;
-                height: 3em;
+                height: 100%;
+                background-color: #fff;
+                box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5);
                 display: flex;
-                align-content: center;
-                align-items: center;
-                justify-content: flex-start;
-                padding-left: 2%;
-             h3{
-                 font-family: 'Muli', serif ;
-                 font-weight: 700;
-                 color: $primary;
-
-             }
-            }
-            .rayita {
-                width: 96%;
-                margin-left: 2%;
-                margin-right: 2%;
-                margin-bottom: 2%;
-                height: 0.15em;
-                border-radius: 2em;
-                background-color: $primary;
-            }
-
-            .contTarjePedido{
-                width: 95%;
-                margin: 1.5em;
-                padding: 0.8em;
-                border-radius: 0.5em;
-                background-color: $secundary;
-                box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.50);
-                display: flex;
+                flex-direction: column;
                 flex-wrap: nowrap;
-                flex-direction: row;
-                .boxUno{
-                    width: 100px;
+                justify-content: flex-start;
+                align-items: center;
+                border-radius: 10px; 
+                .contTitListPedidos {
+                    width: 96%;
+                    height: 3em;
                     display: flex;
+                    flex-direction: row;
+                    align-content: center;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0 2%;
+                    h3 {
+                        font-family: 'Muli', serif ;
+                        font-weight: 700;
+                        color: $primary;
+                    }
+                }
+                .contRayita {
+                    width: 96%;
+                    padding: 0 2%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center; 
+                    .rayita {
+                        width: 100%;
+                        margin-bottom: 2%;
+                        height: 0.15em;
+                        border-radius: 2em;
+                        background-color: $primary;
+                    }
+                }
+                .contTarjePedido {
+                    width: 94%;
+                    margin: 2%;
+                    padding: 0.8em;
+                    border-radius: 0.5em;
+                    background-color: $secundary;
+                    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.50);
+                    display: flex;
+                    flex-wrap: nowrap;
+                    flex-direction: row;
                     justify-content: center;
                     align-items: center; 
                     align-items: center;
-                    .imgCliente{
-                        width: 100%;
-                    }
-                }
-                .boxDos{
-                    padding-left: 2%;
-                    width: 80%;
-                    .nameCliente{
-                        padding: 0.5em 0 0 0;
-                        font-family: 'Merriweather', serif;
-                        color: $darkPrimary;
-                        font-weight: 400;
-                        b {
-                        font-family: 'Merriweather', serif;
-                        color: $primary;
-                        font-weight: 700;
-                        }
-                    }
-                    .numOrden{
-                        font-family: 'Merriweather', serif;
-                        color: $darkPrimary;
-                        font-weight: 400;
-                        padding: 0.5em 0 0 0;
-                        b{
-                            font-family: 'Muli', serif;
-                            font-weight: 700;
-                            color: $black;
-                            font-size: 0.8em;
-                        }
-                    }
-                    .pedido{
-                        font-family: 'Merriweather', serif;
-                        color: $darkPrimary;
-                        font-weight: 400;
-                        padding: 0.5em 0 0 0;
-                        b{
-                            font-family: 'Muli', serif;
-                            font-weight: 700;
-                            color: $black;
-                            font-size: 1em;
-                        }
-                    }
-                    .botonSeguimiento{
-                        margin: 0.5em 0;
-                    }
-                }
-                .boxTres{
-                
-                    width: 20%;
-                    padding-left: 2em;
-
-                    .progressBar{
-                        padding-top: 15px;
-                    }
-                   
-                   .contBotSegui {
-                    width: 100%;
-                    padding: 15px 0;
-                    //height: 20%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    align-content: center;
-                    .botSegui {
-                        background-color: $secundary;
-                        width: 180px;
-                        height: 35px;
-                        //background-color: $darkPrimary;
+                    .boxUno {
+                        width: 100px;
                         display: flex;
                         justify-content: center;
-                        align-content: center;
+                        align-items: center; 
                         align-items: center;
-                        border-radius: 4em;
-                        border-style: solid;
-                        border-width: 2px;
-                        border-color: $primary;
-                        h3 {
-                            font-size: 1em;
-                            color: $primary;
-                            font-family: 'Muli', sans-serif;
-                            font-weight: 500;
+                        .imgCliente {
+                            width: 100%;
                         }
                     }
-                    .botSegui:hover {
-                        background-color: $secundary;
-                        box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
-                        border-color: $darkPrimary;
-                        h3:hover {
-                            font-weight: 700;
+                    .boxDos {
+                        width: 80%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                        align-items: flex-start;
+                        padding-left: 1%;
+                        .nameCliente {
+                            font-family: 'Merriweather', serif;
+                            color: $darkPrimary;
+                            font-weight: 400;
+                            b {
+                                font-family: 'Merriweather', serif;
+                                color: $primary;
+                                font-weight: 700;
+                            }
                         }
+                        .numOrden {
+                            font-family: 'Merriweather', serif;
+                            color: $darkPrimary;
+                            font-weight: 400;
+                            b {
+                                font-family: 'Muli', serif;
+                                font-weight: 700;
+                                color: $black;
+                                font-size: 0.8em;
+                            }
+                        }
+                        .pedido{
+                            font-family: 'Merriweather', serif;
+                            color: $darkPrimary;
+                            font-weight: 400;
+                            b{
+                                font-family: 'Muli', serif;
+                                font-weight: 700;
+                                color: $black;
+                                font-size: 1em;
+                            }
+                        }
+                        .fecha{
+                            font-family: 'Merriweather', serif;
+                            color: $darkPrimary;
+                            font-weight: 400;
+                            b{
+                                font-family: 'Muli', serif;
+                                font-weight: 700;
+                                color: $black;
+                                font-size: 1em;
+                            }
+                        }
+                        .botonSeguimiento {
+                            margin: 0.5em 0;
+                        }
+                    }
+                    .boxTres {
+                        width: 20%;
+                        padding-left: 2em;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        align-content: center;
+                        .contProgress {
+                            width: 100%;
+                            height: 20%;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            align-content: center;
+                        }
+                        .contBotSegui {
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            align-content: center;
+                            .botSegui {
+                                background-color: $secundary;
+                                width: 180px;
+                                height: 35px;
+                                display: flex;
+                                justify-content: center;
+                                align-content: center;
+                                align-items: center;
+                                border-radius: 4em;
+                                border-style: solid;
+                                border-width: 2px;
+                                border-color: $primary;
+                                h3 {
+                                    font-size: 1em;
+                                    color: $primary;
+                                    font-family: 'Muli', sans-serif;
+                                    font-weight: 500;
+                                }
+                            }
+                            .botSegui:hover {
+                                background-color: $primary;
+                                box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+                                border-color: $darkPrimary;
+                                h3 {
+                                    color: $white;
+                                }
+                            }
+                        }
+                    
                     }
                 }
-                
             }
         }
     }
-
-}
 }

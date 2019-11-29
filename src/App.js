@@ -2,6 +2,9 @@ import React from 'react';
 import firebase from './Firestore';
 import axios from 'axios';
 import { Line } from 'rc-progress';
+import * as moment from 'moment';
+import Modal from 'react-awesome-modal';
+
 import './reset.css';
 import './style.css';
 
@@ -22,6 +25,8 @@ export class App extends React.Component {
     super(props);
     this.state = {
       enPreparacionArrays: [],
+      imagenResta: '',
+      visible : false,
     }
   }
  
@@ -32,7 +37,8 @@ export class App extends React.Component {
       var restaurants = [];
       
       querySnapshot.forEach(async (doc) => {
-        console.log(doc.data().user);
+        this.state.imagenResta = doc.data().imagenResta;
+        console.log(this.state.imagenResta);
         const userInfo = await userCollection.where("uid", "==", doc.data().user).get();
         console.log(userInfo.docs[0].data())
         restaurants.push({...doc.data(), id: doc.id, userInfo: userInfo.docs[0].data()});
@@ -42,6 +48,44 @@ export class App extends React.Component {
         this.setState({enPreparacionArrays: []})
       }
     });
+  }
+
+  openModal() {
+    this.setState({
+      visible : true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      visible : false
+    });
+  }
+
+  pasoPedidoPorcen(pasoActualPorcentaje) {
+    switch (pasoActualPorcentaje) {
+      case 0:
+        return 0;
+      case 1:
+        return 33;
+      case 2:
+        return 66;
+      default: 
+        return 100;
+    }
+  }
+
+  pasoPedidoLetras(pasoActualPorcentaje) {
+    switch (pasoActualPorcentaje) {
+      case 0:
+        return 'Tomando pedido';
+      case 1:
+        return 'Order aceptada';
+      case 2:
+        return 'En preparación';
+      default: 
+        return 'Ya puede recogerlo';
+    }
   }
 
   nextStep(docId) {
@@ -56,6 +100,7 @@ export class App extends React.Component {
   }
 
   render() {
+    console.log(moment().format("MMM Do YY"));
     return (
       <div className="container" >
         <div className="menu">
@@ -63,7 +108,7 @@ export class App extends React.Component {
             <img className="imgLogoReady" src={logo}/>
           </div>
           <div className="contInfoRest">  
-            <img src={imaResta} alt=""/>
+            <img src={this.state.imagenResta} alt="" className=""/>
             <div className="contNameRest">
               <h1 className="nameRest">El Retiro</h1>
             </div>
@@ -90,6 +135,35 @@ export class App extends React.Component {
               <h2>Configuración</h2>
             </div>
           </div>
+          <div className="contAfluencia contBotCerrar">
+            <div className="cerrarRestauranteBot" onClick={() => this.openModal()}>
+              <h3>Afluencia</h3>
+            </div>
+            <Modal 
+              visible={this.state.visible}
+              width="400"
+              height="300"
+              effect="fadeInUp"
+              onClickAway={() => this.closeModal()}>
+              <div className="Afluencia">
+                <h1>¿Que tan lleno esta el restaurante?</h1>
+                <div className="tiposAfluencia">
+                  <div className="tipo" onClick={() => this.closeModal()}>
+                    <div className="uno"></div>
+                    <h3>No esta tan lleno</h3>
+                  </div>
+                  <div className="tipo" onClick={() => this.closeModal()}>
+                    <div className="dos"></div>
+                    <h3>Lo normal</h3>
+                  </div>
+                  <div className="tipo" onClick={() => this.closeModal()}>
+                    <div className="tres"></div>
+                    <h3>Esta todo ocupado</h3>
+                  </div>
+                </div>
+              </div>
+            </Modal>
+          </div>
           <div className="contBotCerrar">
             <div className="cerrarRestauranteBot">
               <h3>CERRAR RESTAURANTE</h3>
@@ -107,40 +181,49 @@ export class App extends React.Component {
               <img src={user} alt=""/>
             </div>
           </div>
-          <div className="listaPedidos">
-            <div className="contTitListPedidos">
-              <h3>Lista de Pedidos</h3>
+          <div className="contList">
+            <div className="listaPedidos">
+              <div className="contTitListPedidos">
+                <h3>Lista de Pedidos</h3>
+                <p>{moment().format("LL")}</p>
+              </div>
+              <div className="contRayita">
+                <div className="rayita"></div>
+              </div>
+              {this.state.enPreparacionArrays.map((restaurant, index) => {
+                const fecha = restaurant.fecha
+                  return (
+                    <div className="contTarjePedido">
+                      <div className="boxUno">
+                        <img className="imgCliente" src={cliente} alt=""/>
+                      </div>
+                      <div className="boxDos">
+                        <p className="nameCliente">Cliente:  <b>{restaurant.userInfo.nameUser}</b></p>
+                        <p className="numOrden">Número de Orden: <b>{restaurant.numPedido}</b></p>
+                        <p className="pedido">Orden: <b>{restaurant.pedidoDetails}</b></p>
+                        <p className="fecha">Fecha y hora del pedido: <b>{moment(fecha.toDate()).format('LLL')}</b></p>
+                        
+                      </div>
+                      <div className="boxTres">
+                        <div className="contProgress">
+                          <Line className="progressBar" percent={this.pasoPedidoPorcen(restaurant.seguimiento.pasoActual)} strokeWidth="8" strokeColor="#B1122A"
+                          trailColor= "#d9d9d9"
+                          trailWidth="8" 
+                          strokeLinecap="round"
+                          />
+                        </div>
+                        <p>Paso actual:</p>
+                        <p>{this.pasoPedidoLetras(restaurant.seguimiento.pasoActual)}</p>
+                        <div className="contBotSegui">
+                          <div className="botSegui" onClick={() => this.nextStep(restaurant.id)}><h3>siguiente</h3></div>
+                        </div>
+                      </div>
+                        
+                    </div>
+                  )
+              })}
             </div>
-            <div className="rayita"></div>
-            {this.state.enPreparacionArrays.map((restaurant, index) => {
-                return (
-                  <div className="contTarjePedido">
-                    <div className="boxUno">
-                      <img className="imgCliente" src={cliente} alt=""/>
-                    </div>
-                    <div className="boxDos">
-                      <p className="nameCliente">Cliente:  <b>{restaurant.userInfo.nameUser}</b></p>
-                      <p className="numOrden">Número de Orden: <b>{Math.floor(Math.random()*1000)}</b></p>
-                      <p className="pedido">Orden: <b>{restaurant.pedidoDetails}</b></p>
-                    </div>
-                    <div className="boxTres">
-                     <div>
-                        <Line className="progressBar" percent="50" strokeWidth="8" strokeColor="#B1122A"
-                        trailColor= "#d9d9d9"
-                        trailWidth="8" 
-                        strokeLinecap="round"
-                        />
-                      </div>
-                      <p>paso actual {restaurant.seguimiento.pasoActual}</p>
-                      <div className="contBotSegui">
-                        <div className="botSegui" onClick={() => this.nextStep(restaurant.id)}><h3>siguiente</h3></div>
-                      </div>
-                    </div>
-                      
-                  </div>
-                )
-            })}
-          </div>
+          </div >
         </div>
       </div>
     )
