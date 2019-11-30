@@ -14,7 +14,7 @@ $transparente: rgba(255, 255, 255, 0);
  //Afluencia
 $afluVerde: #17DF00;
 $afluAmari: #FF8800;
-$afluRojo: #C90000;
+$afluRojo: #7E0D1E;
 
 .container {
     width: 100vw;
@@ -26,6 +26,8 @@ $afluRojo: #C90000;
     align-content: center;
     align-items: center;
     background: #151414;
+    overflow-y: hidden;
+    overflow-x: hidden;
     .menu {
         width: 20%;
         height: 100%;
@@ -143,71 +145,131 @@ $afluRojo: #C90000;
         .contAfluencia {
             width: 100%;
             height: 10%;
-            .Afluencia {
-                width: 100%;
-                height: 100%;
+            .botAfluencia1 {
+                width: 180px;
+                height: 35px;
+                background: $afluVerde;
                 display: flex;
-                flex-direction: column;
                 justify-content: center;
                 align-content: center;
                 align-items: center;
-                h1 {
-                    width: 100%;
-                    height: 20%;
-                    font-size: 0.8em;
-                    color: $primary;
-                    font-family: 'Muli', serif;
-                    font-weight: 800;
+                border-radius: 4em;
+                border-style: solid;
+                border-width: 2px;
+                border-color: $white;
+                margin: 1%;
+                h3 {
+                    font-size: 0.7em;
+                    color: $white;
+                    font-family: 'Muli', sans-serif;
+                    font-weight: 500;
+                }
+            }
+            .botAfluencia2 {
+                width: 180px;
+                height: 35px;
+                background: $afluAmari;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                border-radius: 4em;
+                border-style: solid;
+                border-width: 2px;
+                border-color: $white;
+                margin: 1%;
+                h3 {
+                    font-size: 0.7em;
+                    color: $white;
+                    font-family: 'Muli', sans-serif;
+                    font-weight: 500;
+                }
+            }
+            .botAfluencia3 {
+                width: 180px;
+                height: 35px;
+                background: $afluRojo;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                border-radius: 4em;
+                border-style: solid;
+                border-width: 2px;
+                border-color: $white;
+                margin: 1%;
+                h3 {
+                    font-size: 0.7em;
+                    color: $white;
+                    font-family: 'Muli', sans-serif;
+                    font-weight: 500;
+                }
+            }
+        }
+        .Afluencia {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            h1 {
+                width: 100%;
+                height: 20%;
+                font-size: 0.8em;
+                color: $primary;
+                font-family: 'Muli', serif;
+                font-weight: 800;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+            }
+            .tiposAfluencia {
+                width: 100%;
+                height: 80%;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                .tipo {
+                    width: 30%;
+                    height: 100%;
                     display: flex;
-                    justify-content: center;
+                    flex-direction: column;
+                    justify-content: space-around;
                     align-content: center;
                     align-items: center;
                 }
-                .tiposAfluencia {
-                    width: 100%;
-                    height: 80%;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-content: center;
-                    align-items: center;
-                    .tipo {
-                        width: 30%;
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-around;
-                        align-content: center;
-                        align-items: center;
-                    }
-                    .tipo:hover {
-                        background: $lightGray;
-                    }
-                    .uno {
-                        width: 100px;
-                        height: 100px;
-                        border-radius: 50px;
-                        background: $afluVerde;
-                    }
-                    .dos {
-                        width: 100px;
-                        height: 100px;
-                        border-radius: 50px;
-                        background: $afluAmari;
-                    }
-                    .tres {
-                        width: 100px;
-                        height: 100px;
-                        border-radius: 50px;
-                        background: $afluRojo;
-                    }
-                    h3 {
-                        font-size: 0.7em;
-                        color: $black;
-                        font-family: 'Muli', sans-serif;
-                        font-weight: 500;
-                        margin: 2%;
-                    }
+                .tipo:hover {
+                    background: $lightGray;
+                }
+                .uno {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50px;
+                    background: $afluVerde;
+                }
+                .dos {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50px;
+                    background: $afluAmari;
+                }
+                .tres {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50px;
+                    background: $afluRojo;
+                }
+                h3 {
+                    font-size: 0.7em;
+                    color: $black;
+                    font-family: 'Muli', sans-serif;
+                    font-weight: 500;
+                    margin: 2%;
                 }
             }
         }
@@ -261,7 +323,7 @@ $afluRojo: #C90000;
         .header {
             user-select: none;
             width: 100%;
-            height: 6%;
+            height: 8%;
             background-color: $secundary;
             display: flex;
             flex-direction: row;
@@ -300,12 +362,15 @@ $afluRojo: #C90000;
                     color: $primary;
                     padding-right: 1em;
                 }
+                img {
+                    height: 30px;
+                }
             }
         }
         .contList {
-            width: 96%;
-            height: 94%;
-            padding: 2%;
+            width: 94%;
+            height: 90%;
+            padding: 2% 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -351,10 +416,17 @@ $afluRojo: #C90000;
                         background-color: $primary;
                     }
                 }
+                .contPedidos {
+                    width: 96%;
+                    height: 85%;
+                    overflow-y: scroll;
+                    //overflow-y: hidden;
+                    padding: 0 2%;
+                }
                 .contTarjePedido {
-                    width: 94%;
-                    margin: 2%;
-                    padding: 0.8em;
+                    width: 95%;
+                    margin: 2% 0;
+                    padding: 1%;
                     border-radius: 0.5em;
                     background-color: $secundary;
                     box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.50);
@@ -431,15 +503,16 @@ $afluRojo: #C90000;
                     }
                     .boxTres {
                         width: 20%;
-                        padding-left: 2em;
+                        height: 100%;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        justify-content: center;
+                        justify-content: space-between;
                         align-content: center;
                         .contProgress {
                             width: 100%;
                             height: 20%;
+                            padding: 4% 0;
                             display: flex;
                             flex-direction: column;
                             align-items: center;
@@ -448,6 +521,7 @@ $afluRojo: #C90000;
                         }
                         .contBotSegui {
                             width: 100%;
+                            padding: 4% 0;
                             display: flex;
                             align-items: center;
                             justify-content: center;
@@ -455,7 +529,7 @@ $afluRojo: #C90000;
                             .botSegui {
                                 background-color: $secundary;
                                 width: 180px;
-                                height: 35px;
+                                height: 30px;
                                 display: flex;
                                 justify-content: center;
                                 align-content: center;

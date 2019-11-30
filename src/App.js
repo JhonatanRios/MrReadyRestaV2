@@ -10,7 +10,6 @@ import './style.css';
 
 
 const logo = '/assets/logoReady.png';
-const imaResta = '/assets/imgRest.png';
 const user = '/assets/imgAngelina.png';
 const lupa = '/assets/Loupe.png';
 const uno = '/assets/botoncitos/1.png';
@@ -25,29 +24,48 @@ export class App extends React.Component {
     super(props);
     this.state = {
       enPreparacionArrays: [],
-      imagenResta: '',
+      imagenResta: 'https://firebasestorage.googleapis.com/v0/b/mr-ready.appspot.com/o/Restaurantes%2FEl%20Retiro.jpg?alt=media&token=1a8642d5-f1bf-45d1-b770-afd814b27728',
+      afluencia: 0,
       visible : false,
+      dbResta:'',
+      
     }
   }
  
   componentDidMount () {
     const db = firebase.collection('enPreparacion');
+    this.state.dbResta = firebase.collection('restaurantes');
     const userCollection = firebase.collection('userGustos');
+
+    this.state.dbResta.doc("4jA0jtIdQeiLHKpDbVoI")
+    .onSnapshot((doc) => {
+        console.log("Current data: ", doc.data());
+        this.setState({afluencia: doc.data().afluencia})
+    });
     db.where("restaurante", "==", "El Retiro").onSnapshot((querySnapshot) => {
       var restaurants = [];
-      
       querySnapshot.forEach(async (doc) => {
         this.state.imagenResta = doc.data().imagenResta;
         console.log(this.state.imagenResta);
         const userInfo = await userCollection.where("uid", "==", doc.data().user).get();
-        console.log(userInfo.docs[0].data())
-        restaurants.push({...doc.data(), id: doc.id, userInfo: userInfo.docs[0].data()});
+        restaurants.push({...doc.data(), id: doc.id, userInfo: userInfo.docs.length > 0? userInfo.docs[0].data(): null});
         this.setState({enPreparacionArrays: restaurants})
       });
       if (querySnapshot.docs.length === 0) {
         this.setState({enPreparacionArrays: []})
       }
     });
+    
+  }
+
+  coloresAfluResta(afluencia) {
+    if (afluencia === 1) {
+      return 'botAfluencia1'
+    } else if (afluencia === 2) {
+      return 'botAfluencia2'
+    } else if (afluencia === 3) {
+      return 'botAfluencia3'
+    }
   }
 
   openModal() {
@@ -78,13 +96,13 @@ export class App extends React.Component {
   pasoPedidoLetras(pasoActualPorcentaje) {
     switch (pasoActualPorcentaje) {
       case 0:
-        return 'Tomando pedido';
+        return 'Aceptar Pedido';
       case 1:
-        return 'Order aceptada';
+        return 'Empezar Preparación';
       case 2:
-        return 'En preparación';
+        return 'Terminar Pedido';
       default: 
-        return 'Ya puede recogerlo';
+        return 'Pedido Terminado';
     }
   }
 
@@ -99,8 +117,16 @@ export class App extends React.Component {
     });
   }
 
+  cambiarAfluencia(olita) {
+    this.setState({afluencia: olita}, () => {
+      this.state.dbResta.doc("4jA0jtIdQeiLHKpDbVoI").set({
+        afluencia: this.state.afluencia
+      }, { merge: true });
+      this.closeModal();
+    })
+  }
+
   render() {
-    console.log(moment().format("MMM Do YY"));
     return (
       <div className="container" >
         <div className="menu">
@@ -136,8 +162,8 @@ export class App extends React.Component {
             </div>
           </div>
           <div className="contAfluencia contBotCerrar">
-            <div className="cerrarRestauranteBot" onClick={() => this.openModal()}>
-              <h3>Afluencia</h3>
+            <div className={this.coloresAfluResta(this.state.afluencia)} onClick={() => this.openModal()}>
+              <h3>AFLUENCIA</h3>
             </div>
             <Modal 
               visible={this.state.visible}
@@ -148,15 +174,15 @@ export class App extends React.Component {
               <div className="Afluencia">
                 <h1>¿Que tan lleno esta el restaurante?</h1>
                 <div className="tiposAfluencia">
-                  <div className="tipo" onClick={() => this.closeModal()}>
+                  <div className="tipo" onClick={() => this.cambiarAfluencia(1)}>
                     <div className="uno"></div>
                     <h3>No esta tan lleno</h3>
                   </div>
-                  <div className="tipo" onClick={() => this.closeModal()}>
+                  <div className="tipo" onClick={() => this.cambiarAfluencia(2)}>
                     <div className="dos"></div>
                     <h3>Lo normal</h3>
                   </div>
-                  <div className="tipo" onClick={() => this.closeModal()}>
+                  <div className="tipo" onClick={() => this.cambiarAfluencia(3)}>
                     <div className="tres"></div>
                     <h3>Esta todo ocupado</h3>
                   </div>
@@ -190,38 +216,39 @@ export class App extends React.Component {
               <div className="contRayita">
                 <div className="rayita"></div>
               </div>
-              {this.state.enPreparacionArrays.map((restaurant, index) => {
-                const fecha = restaurant.fecha
-                  return (
-                    <div className="contTarjePedido">
-                      <div className="boxUno">
-                        <img className="imgCliente" src={cliente} alt=""/>
-                      </div>
-                      <div className="boxDos">
-                        <p className="nameCliente">Cliente:  <b>{restaurant.userInfo.nameUser}</b></p>
-                        <p className="numOrden">Número de Orden: <b>{restaurant.numPedido}</b></p>
-                        <p className="pedido">Orden: <b>{restaurant.pedidoDetails}</b></p>
-                        <p className="fecha">Fecha y hora del pedido: <b>{moment(fecha.toDate()).format('LLL')}</b></p>
-                        
-                      </div>
-                      <div className="boxTres">
-                        <div className="contProgress">
-                          <Line className="progressBar" percent={this.pasoPedidoPorcen(restaurant.seguimiento.pasoActual)} strokeWidth="8" strokeColor="#B1122A"
-                          trailColor= "#d9d9d9"
-                          trailWidth="8" 
-                          strokeLinecap="round"
-                          />
+              <div className="contPedidos">
+                {this.state.enPreparacionArrays.map((restaurant, index) => {
+                  const fecha = restaurant.fecha
+                    return (
+                      <div className="contTarjePedido">
+                        <div className="boxUno">
+                          <img className="imgCliente" src={cliente} alt=""/>
                         </div>
-                        <p>Paso actual:</p>
-                        <p>{this.pasoPedidoLetras(restaurant.seguimiento.pasoActual)}</p>
-                        <div className="contBotSegui">
-                          <div className="botSegui" onClick={() => this.nextStep(restaurant.id)}><h3>siguiente</h3></div>
+                        <div className="boxDos">
+                          <p className="nameCliente">Cliente:  <b>{restaurant.userInfo.nameUser}</b></p>
+                          <p className="numOrden">Número de Orden: <b>{restaurant.numPedido}</b></p>
+                          <p className="pedido">Orden: <b>{restaurant.pedidoDetails}</b></p>
+                          <p className="fecha">Fecha y hora del pedido: <b>{moment(fecha.toDate()).format('LLL')}</b></p>
+                          
                         </div>
+                        <div className="boxTres">
+                          <div className="contProgress">
+                            <Line className="progressBar" percent={this.pasoPedidoPorcen(restaurant.seguimiento.pasoActual)} strokeWidth="8" strokeColor="#B1122A"
+                            trailColor= "#d9d9d9"
+                            trailWidth="8" 
+                            strokeLinecap="round"
+                            />
+                          </div>
+
+                          <div className="contBotSegui">
+                            <div className="botSegui" onClick={() => this.nextStep(restaurant.id)}><h3>{this.pasoPedidoLetras(restaurant.seguimiento.pasoActual)}</h3></div>
+                          </div>
+                        </div>
+                          
                       </div>
-                        
-                    </div>
-                  )
-              })}
+                    )
+                })}
+              </div>
             </div>
           </div >
         </div>
