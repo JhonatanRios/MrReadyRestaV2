@@ -24,7 +24,7 @@ export class App extends React.Component {
     super(props);
     this.state = {
       enPreparacionArrays: [],
-      imagenResta: 'https://firebasestorage.googleapis.com/v0/b/mr-ready.appspot.com/o/Restaurantes%2FEl%20Retiro.jpg?alt=media&token=1a8642d5-f1bf-45d1-b770-afd814b27728',
+      imagenResta: 'https://firebasestorage.googleapis.com/v0/b/mr-ready.appspot.com/o/LogosRestaurantesReales%2Fel-sabor-de-mi-tierra.jpeg?alt=media&token=d4750fa0-843e-4672-95b0-769c5b834204',
       afluencia: 0,
       visible : false,
       dbResta:'',
@@ -42,7 +42,7 @@ export class App extends React.Component {
         console.log("Current data: ", doc.data());
         this.setState({afluencia: doc.data().afluencia})
     });
-    db.where("restaurante", "==", "El Retiro").onSnapshot((querySnapshot) => {
+    db.where("restaurante", "==", "El Sabor de Mi Tierra").onSnapshot((querySnapshot) => {
       var restaurants = [];
       querySnapshot.forEach(async (doc) => {
         this.state.imagenResta = doc.data().imagenResta;
@@ -136,7 +136,7 @@ export class App extends React.Component {
           <div className="contInfoRest">  
             <img src={this.state.imagenResta} alt="" className=""/>
             <div className="contNameRest">
-              <h1 className="nameRest">El Retiro</h1>
+              <h1 className="nameRest">El Sabor de Mi Tierra</h1>
             </div>
           </div>
           <div className="contBotones">
