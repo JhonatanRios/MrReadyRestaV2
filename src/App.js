@@ -183,7 +183,7 @@ export class App extends React.Component {
                   </div>
                   <div className="tipo" onClick={() => this.cambiarAfluencia(2)}>
                     <div className="dos"><img src={afluDos} alt="" className="aflu"/></div>
-                    <h3>NO Se</h3>
+                    <h3>Pocas mesas libres</h3>
                   </div>
                   <div className="tipo" onClick={() => this.cambiarAfluencia(3)}>
                     <div className="tres"><img src={afluTres} alt="" className="aflu"/></div>
