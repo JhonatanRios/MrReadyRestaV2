@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i|Muli:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
-
 $primary: #B1122A;
 $darkPrimary: #7E0D1E;
 $secundary: #F5F4D8;
@@ -105,9 +104,6 @@ $afluRojo: #7E0D1E;
                 justify-content: flex-start;
                 align-items: center;
                 background-color: $darkPrimary;
-                img {
-                   // width: 4vh; 
-                }
                 h2 {
                     padding-left: 0.6em;
                     color: $white;
@@ -125,9 +121,6 @@ $afluRojo: #7E0D1E;
                 align-content: center;
                 justify-content: flex-start;
                 align-items: center;                
-                img {
-                    //width: 4vh; 
-                }
                 h2 {
                     padding-left: 0.6em;
                     color: $white;
@@ -144,7 +137,7 @@ $afluRojo: #7E0D1E;
         }
         .contAfluencia {
             width: 100%;
-            height: 10%;
+            height: 10%;          
             .botAfluencia1 {
                 width: 180px;
                 height: 35px;
@@ -242,34 +235,78 @@ $afluRojo: #7E0D1E;
                     justify-content: space-around;
                     align-content: center;
                     align-items: center;
+                    .aflu{
+                        width: 60px;
+                        height: 60px;
+                    }
+                    .uno {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50px;
+                        background: $afluVerde;
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        align-items: center;
+                    }
+                    .dos {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50px;
+                        background: $afluAmari;
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        align-items: center;
+                    }
+                    .tres {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50px;
+                        background: $afluRojo;
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        align-items: center;
+                    }
+                    h3 {
+                        font-size: 0.7em;
+                        color: $black;
+                        font-family: 'Muli', sans-serif;
+                        font-weight: 500;
+                        margin: 2%;
+                    }
                 }
                 .tipo:hover {
                     background: $lightGray;
-                }
-                .uno {
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 50px;
-                    background: $afluVerde;
-                }
-                .dos {
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 50px;
-                    background: $afluAmari;
-                }
-                .tres {
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 50px;
-                    background: $afluRojo;
-                }
-                h3 {
-                    font-size: 0.7em;
-                    color: $black;
-                    font-family: 'Muli', sans-serif;
-                    font-weight: 500;
-                    margin: 2%;
+                    border-radius: 6px;
+                    width: 40%;
+                    .aflu{
+                        width: 80px;
+                        height: 80px;
+                    }
+                    .uno {
+                        width: 120px;
+                        height: 120px;
+                        border-radius: 60px;
+                    }
+                    .dos {
+                        width: 120px;
+                        height: 120px;
+                        border-radius: 60px;
+                    }
+                    .tres {
+                        width: 120px;
+                        height: 120px;
+                        border-radius: 60px;
+                    }
+                    h3 {
+                        font-size: 0.9em;
+                        color: $black;
+                        font-family: 'Muli', sans-serif;
+                        font-weight: 800;
+                        margin: 2%;
+                    }
                 }
             }
         }
@@ -284,7 +321,6 @@ $afluRojo: #7E0D1E;
             .cerrarRestauranteBot {
                 width: 180px;
                 height: 35px;
-                //background-color: $darkPrimary;
                 display: flex;
                 justify-content: center;
                 align-content: center;

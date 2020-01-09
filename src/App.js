@@ -18,6 +18,9 @@ const tres = '/assets/botoncitos/3.png';
 const cuatro = '/assets/botoncitos/4.png';
 const cinco = '/assets/botoncitos/5.png';
 const cliente = '/assets/user.png'
+const afluUno = '/assets/afluencia/afluUno.png';
+const afluDos = '/assets/afluencia/afluDos.png';
+const afluTres = '/assets/afluencia/afluTres.png'
 
 export class App extends React.Component {
   constructor(props) {
@@ -175,15 +178,15 @@ export class App extends React.Component {
                 <h1>¿Que tan lleno esta el restaurante?</h1>
                 <div className="tiposAfluencia">
                   <div className="tipo" onClick={() => this.cambiarAfluencia(1)}>
-                    <div className="uno"></div>
-                    <h3>No esta tan lleno</h3>
+                    <div className="uno"><img src={afluUno} alt="" className="aflu"/></div>
+                    <h3>Muchas mesas libres</h3>
                   </div>
                   <div className="tipo" onClick={() => this.cambiarAfluencia(2)}>
-                    <div className="dos"></div>
-                    <h3>Lo normal</h3>
+                    <div className="dos"><img src={afluDos} alt="" className="aflu"/></div>
+                    <h3>NO Se</h3>
                   </div>
                   <div className="tipo" onClick={() => this.cambiarAfluencia(3)}>
-                    <div className="tres"></div>
+                    <div className="tres"><img src={afluTres} alt="" className="aflu"/></div>
                     <h3>Esta todo ocupado</h3>
                   </div>
                 </div>
