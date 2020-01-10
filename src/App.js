@@ -8,7 +8,6 @@ import Modal from 'react-awesome-modal';
 import './reset.css';
 import './style.css';
 
-
 const logo = '/assets/logoReady.png';
 const user = '/assets/imgAngelina.png';
 const lupa = '/assets/Loupe.png';
@@ -31,7 +30,6 @@ export class App extends React.Component {
       afluencia: 0,
       visible : false,
       dbResta:'',
-      
     }
   }
  
@@ -57,8 +55,7 @@ export class App extends React.Component {
       if (querySnapshot.docs.length === 0) {
         this.setState({enPreparacionArrays: []})
       }
-    });
-    
+    }); 
   }
 
   coloresAfluResta(afluencia) {
@@ -222,38 +219,37 @@ export class App extends React.Component {
               <div className="contPedidos">
                 {this.state.enPreparacionArrays.map((restaurant, index) => {
                   const fecha = restaurant.fecha
-                    return (
-                      <div className="contTarjePedido">
-                        <div className="boxUno">
-                          <img className="imgCliente" src={cliente} alt=""/>
-                        </div>
-                        <div className="boxDos">
-                          <p className="nameCliente">Cliente:  <b>{restaurant.userInfo.nameUser}</b></p>
-                          <p className="numOrden">Número de Orden: <b>{restaurant.numPedido}</b></p>
-                          <p className="pedido">Orden: <b>{restaurant.pedidoDetails}</b></p>
-                          <p className="fecha">Fecha y hora del pedido: <b>{moment(fecha.toDate()).format('LLL')}</b></p>
-                          
-                        </div>
-                        <div className="boxTres">
-                          <div className="contProgress">
-                            <Line className="progressBar" percent={this.pasoPedidoPorcen(restaurant.seguimiento.pasoActual)} strokeWidth="8" strokeColor="#B1122A"
-                            trailColor= "#d9d9d9"
-                            trailWidth="8" 
-                            strokeLinecap="round"
-                            />
-                          </div>
-
-                          <div className="contBotSegui">
-                            <div className="botSegui" onClick={() => this.nextStep(restaurant.id)}><h3>{this.pasoPedidoLetras(restaurant.seguimiento.pasoActual)}</h3></div>
-                          </div>
-                        </div>
-                          
+                  return (
+                    <div className="contTarjePedido">
+                      <div className="boxUno">
+                        <img className="imgCliente" src={cliente} alt=""/>
                       </div>
-                    )
+                      <div className="boxDos">
+                        <p className="nameCliente">Cliente:  <b>{restaurant.userInfo.nameUser}</b></p>
+                        <p className="numOrden">Número de Orden: <b>{restaurant.numPedido}</b></p>
+                        <p className="pedido">Orden: <b>{restaurant.pedidoDetails}</b></p>
+                        <p className="fecha">Fecha y hora del pedido: <b>{moment(fecha.toDate()).format('LLL')}</b></p>
+                        <p className="pedido">Recomendaciones: <b>{restaurant.recomienda}</b></p>
+                      </div>
+                      <div className="boxTres">
+                        <div className="contProgress">
+                          <Line className="progressBar" percent={this.pasoPedidoPorcen(restaurant.seguimiento.pasoActual)} strokeWidth="8" strokeColor="#B1122A"
+                          trailColor= "#d9d9d9"
+                          trailWidth="8" 
+                          strokeLinecap="round"
+                          />
+                        </div>
+
+                        <div className="contBotSegui">
+                          <div className="botSegui" onClick={() => this.nextStep(restaurant.id)}><h3>{this.pasoPedidoLetras(restaurant.seguimiento.pasoActual)}</h3></div>
+                        </div>
+                      </div>
+                    </div>
+                  )
                 })}
               </div>
             </div>
-          </div >
+          </div>
         </div>
       </div>
     )

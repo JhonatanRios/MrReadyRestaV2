@@ -454,10 +454,12 @@ $afluRojo: #7E0D1E;
                 }
                 .contPedidos {
                     width: 96%;
-                    height: 85%;
+                    height: 90%;
                     overflow-y: scroll;
-                    //overflow-y: hidden;
                     padding: 0 2%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center; 
                 }
                 .contTarjePedido {
                     width: 95%;
@@ -596,4 +598,24 @@ $afluRojo: #7E0D1E;
             }
         }
     }
+}
+
+.contPedidos::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    //@at-root: none;  /* Ocultar scroll */
+}
+
+.contPedidos::-webkit-scrollbar-thumb {
+    background: $lightGray;
+    border-radius: 4px;
+}
+
+.contPedidos::-webkit-scrollbar-thumb:hover {
+    background: $darkGray;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.contPedidos::-webkit-scrollbar-thumb:active {
+    background-color: $primary;
 }
